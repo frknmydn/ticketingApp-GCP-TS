@@ -1,21 +1,16 @@
-import { CustomError } from "./custom-error";
+import { CustomError } from './custom-error';
 
-export class DatabaseConnectionError extends CustomError{
-    reason = 'Error connecting to database';
-    statusCode = 500;
-    constructor() {
-        super('error connecting to db');
+export class DatabaseConnectionError extends CustomError {
+  statusCode = 500;
+  reason = 'Error connecting to database';
 
-        // only because we are extending a built in class
-        Object.setPrototypeOf(this, DatabaseConnectionError.prototype);
-    }
+  constructor() {
+    super('Error connecting to db');
 
-    serializeErrors(){
-        return[
-            {
-                message:this.reason
-            }
-        ]
-    }
+    Object.setPrototypeOf(this, DatabaseConnectionError.prototype);
+  }
+
+  serializeErrors() {
+    return [{ message: this.reason }];
+  }
 }
-
