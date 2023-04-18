@@ -44,7 +44,7 @@ router.post(
         id: user.id,
         email: user.email
       },
-      'asdf'
+      'asfg'
     );
 
     // Store it on session object

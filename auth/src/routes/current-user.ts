@@ -1,12 +1,10 @@
 import express from 'express';
-import { json } from 'body-parser'
+import { currentUser } from '../middlewares/current-user';
 
 const router = express.Router();
 
-router.get('api/users/currentuser',(req,res) =>{
-    res.send('hello there!');
-    
-
+router.get('/api/users/currentuser', currentUser, (req, res) => {
+  res.send({ currentUser: req.currentUser || null });
 });
 
-export {router as currentuserRouter}
+export { router as currentUserRouter };

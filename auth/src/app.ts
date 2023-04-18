@@ -3,7 +3,7 @@ import "express-async-errors";
 import { json } from "body-parser";
 
 const cookieSession = require("cookie-session");
-import { currentuserRouter } from "./routes/current-user";
+import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
@@ -21,7 +21,7 @@ app.use(
   })
 );
 //hi i changed
-app.use(currentuserRouter);
+app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
