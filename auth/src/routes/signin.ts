@@ -19,10 +19,10 @@ router.post('/api/users/signin',[
 
 ],
 validateRequest,
-async (req:Request,res:Response) => {
-    const {email, password} = req.body;
-    const existingUser = await User.findOne({email});
-    if(!existingUser){
+async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
         throw new BadRequestError('invalid credentials');
     }
 
@@ -30,7 +30,7 @@ async (req:Request,res:Response) => {
         existingUser.password,
         password
     );
-    if(!passwordMatch){
+    if (!passwordMatch) {
         throw new BadRequestError('invalid credentials');
     }
 
@@ -44,10 +44,13 @@ async (req:Request,res:Response) => {
 
     req.session = {
         jwt: userJWT
-    }
-    res.status(200).send(existingUser)
-    
+    };
 
+    // JWT'yi Authorization başlığı altında gönder
+    res.status(200).send({
+        user: existingUser,
+        token: userJWT
+    });
 });
 
-export {router as signinRouter};
+export { router as signinRouter };

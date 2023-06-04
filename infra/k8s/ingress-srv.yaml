@@ -7,17 +7,31 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: myticketing.dev #ticketing.dev
+    - host: myticketing.com #ticketing.dev
       http:
         paths:
-          - path: /api/users/?(.*)
+          - path: "/api/users/?(.*)"
             pathType: Prefix
             backend:
               service:
                 name: auth-srv
                 port:
                   number: 3000
-          - path: /?(.*)
+          - path: "/api/diary/?(.*)"
+            pathType: Prefix
+            backend:
+              service:
+                name: diary-srv
+                port:
+                  number: 3000
+          - path: "/api/notification/?(.*)"
+            pathType: Prefix
+            backend:
+              service:
+                name: notification-srv
+                port:
+                  number: 3000
+          - path: "/?(.*)"
             pathType: Prefix
             backend:
               service:

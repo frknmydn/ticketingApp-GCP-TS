@@ -34,3 +34,4 @@ app.use(errorHandler);
 export { app };
 
 //app.ts dosyasinda serveri baslatilmiyor artik sadece configure ediliyor
+

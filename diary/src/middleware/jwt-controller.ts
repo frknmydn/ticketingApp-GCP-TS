@@ -1,17 +1,17 @@
+import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 
-const authenticateJWT = (req, res, next) => {
+const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
 
   if (token) {
-    jwt.verify(token, 'asfg', (err, user) => {
+    jwt.verify(token, 'asfg', (err:any) => {
       if (err) {
         // Invalid token
+        console.error(err.message);
         return res.sendStatus(403);
       }
-
-      req.user = user; 
       next();
     });
   } else {
